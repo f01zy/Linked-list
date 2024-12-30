@@ -1,3 +1,0 @@
-/home/aminov/Документы/Programming/C++/linked list/build/CMakeFiles/start.dir
-/home/aminov/Документы/Programming/C++/linked list/build/CMakeFiles/edit_cache.dir
-/home/aminov/Документы/Programming/C++/linked list/build/CMakeFiles/rebuild_cache.dir
