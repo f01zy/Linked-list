@@ -4,7 +4,7 @@
 class Node {
 public:
   int data;
-  Node *next;
+  Node *next = nullptr;
 
   Node(int j) { data = j; }
 };
@@ -32,6 +32,9 @@ public:
   Node *get(int i) {
     Node *current = head;
     for (int j = 1; j <= i; j++) {
+      if (current == nullptr)
+        break;
+
       current = current->next;
     }
 
@@ -39,26 +42,38 @@ public:
   }
 
   void remove(int i) {
-    Node *prev = head;
+    Node *prev = nullptr;
     Node *current = head;
 
-    if (i == 0) {
-      Node *temp = head;
-      head = head->next;
-      delete temp;
-      return;
-    }
+    for (int j = 0; j < i; j++) {
+      if (current == nullptr)
+        break;
 
-    for (int j = 1; j <= i; j++) {
       prev = current;
       current = current->next;
     }
 
-    prev->next = current->next;
+    if (current == nullptr) {
+      return;
+    }
+
+    if (prev == nullptr) {
+      head = current->next;
+    }
+
+    else {
+      prev->next = current->next;
+    }
+
     delete current;
   }
 
   void print() {
+    if (!head) {
+      std::cout << "list is empty" << std::endl;
+      return;
+    }
+
     Node *current = head;
 
     while (current) {
@@ -80,12 +95,6 @@ int main() {
   list->append(2);
   list->append(3);
   list->append(4);
-
-  list->remove(1);
-
-  Node *get = list->get(2);
-  std::cout << get->data << std::endl;
-  std::cout << "" << std::endl;
 
   list->print();
 
